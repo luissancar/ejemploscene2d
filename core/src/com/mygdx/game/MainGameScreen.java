@@ -67,6 +67,7 @@ public class MainGameScreen extends BaseScreen {
         if (jugador.isVivo() && jugador.getX()+jugador.getWidth()>montana.getX())  {
             System.out.println("Colisión");
             jugador.setVivo(false);
+            jugador.setVisible(false);
         }
 
     }
