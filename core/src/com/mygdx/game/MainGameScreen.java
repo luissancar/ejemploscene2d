@@ -25,7 +25,7 @@ public class MainGameScreen extends BaseScreen {
 
     public MainGameScreen(MyGdxGame game) {
         super(game);
-        texturaJugador=new Texture("badlogic.jpg");
+        texturaJugador=new Texture("badlogic.png");
         texturaMontana=new Texture("sierra.png");
         regionMontana=new TextureRegion(texturaMontana,0,72,256,85);
 
@@ -35,6 +35,7 @@ public class MainGameScreen extends BaseScreen {
     @Override
     public void show() {
         stage=new Stage();
+        stage.setDebugAll(true);//dibuja márgenes objetos para debug
         jugador=new ActorJugador(texturaJugador);
         montana=new ActorMontana(regionMontana);
 
@@ -42,8 +43,8 @@ public class MainGameScreen extends BaseScreen {
 
         stage.addActor(montana);
         stage.addActor(jugador);
-        jugador.setPosition(200,140);
-        montana.setPosition(128,0);
+        jugador.setPosition(200,0);
+        montana.setPosition(408,0);
     }
 
     @Override
@@ -56,6 +57,18 @@ public class MainGameScreen extends BaseScreen {
         Gdx.gl.glClearColor(1,0.8f,0.8f,1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         stage.act();
+
+        comprobarColisiones();
+
         stage.draw();
     }
+
+    private void comprobarColisiones(){
+        if (jugador.isVivo() && jugador.getX()+jugador.getWidth()>montana.getX())  {
+            System.out.println("Colisión");
+            jugador.setVivo(false);
+        }
+
+    }
+
 }

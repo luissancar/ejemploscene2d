@@ -13,7 +13,20 @@ public class ActorMontana extends Actor {
     private TextureRegion montana;
 
     public ActorMontana(TextureRegion montana) {
+
         this.montana=montana;
+        setSize(montana.getRegionWidth(),montana.getRegionHeight()); //damos dimensiones para las colisiones
+    }
+
+
+    @Override
+    public void act(float delta) {
+       // float x=getX(); // mal efecto no uniforme
+       // setX(x-10);  //
+
+        /// multiplicar delta por pixeles por segundo
+        setX(getX()-250*delta);
+
     }
 
     @Override

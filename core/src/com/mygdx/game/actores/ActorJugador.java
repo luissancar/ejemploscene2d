@@ -10,9 +10,25 @@ import com.badlogic.gdx.scenes.scene2d.Actor;
 
 public class ActorJugador extends Actor{
     private Texture jugador;
-    public ActorJugador(Texture actor){
-        this.jugador=actor;
+    private boolean vivo=true;
+
+    public boolean isVivo() {
+        return vivo;
     }
+
+    public void setVivo(boolean vivo) {
+        this.vivo = vivo;
+    }
+
+
+
+    public ActorJugador(Texture jugador){
+
+        this.jugador=jugador;
+        setSize(jugador.getWidth(),jugador.getHeight()); //damos dimensiones para las colisiones
+    }
+
+
     @Override
     public void act(float delta) {
 
